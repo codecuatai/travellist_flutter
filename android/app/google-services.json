@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "913826560212",
+    "project_id": "travellist-8a848",
+    "storage_bucket": "travellist-8a848.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913826560212:android:f9ffbd1121b29e02b32341",
+        "android_client_info": {
+          "package_name": "com.example.travellist04"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF-cqzG6dHpzfprn4q4re5LnFAlXsFT4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
