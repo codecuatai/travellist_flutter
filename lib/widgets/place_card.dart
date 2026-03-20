@@ -15,7 +15,7 @@ class PlaceCard extends StatelessWidget {
       onTap: onTap,
       child: Card(
         elevation: 4,
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,62 +78,63 @@ class PlaceCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Chip(
-                        label: Text(
-                          place.category,
-                          style: const TextStyle(fontSize: 10),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Chip(
+                            label: Text(
+                              place.category,
+                              style: const TextStyle(fontSize: 10),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            backgroundColor: Colors.blue[100],
+                            visualDensity: VisualDensity.compact,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                          ),
                         ),
-                        backgroundColor: Colors.blue[100],
-                        visualDensity: VisualDensity.compact,
                       ),
-                      Row(
-                        children: [
-                          const Icon(Icons.star, size: 14, color: Colors.amber),
-                          const SizedBox(width: 4),
-                          Text(
-                            place.rating.toStringAsFixed(1),
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          const SizedBox(width: 8),
-                          // Favorite button at bottom-right of card
-                          Consumer<FavoritesProvider>(
-                            builder: (context, provider, _) {
-                              final isFav = provider.isFavorite(place.id);
-                              return Container(
-                                width: 34,
-                                height: 34,
-                                decoration: BoxDecoration(
-                                  color: isFav
-                                      ? Colors.redAccent
-                                      : Colors.white,
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color.fromRGBO(0, 0, 0, 0.08),
-                                      blurRadius: 4,
-                                      offset: const Offset(0, 2),
-                                    ),
-                                  ],
+                      const SizedBox(width: 6),
+                      const Icon(Icons.star, size: 14, color: Colors.amber),
+                      const SizedBox(width: 4),
+                      Text(
+                        place.rating.toStringAsFixed(1),
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                      const SizedBox(width: 8),
+                      // Favorite button at bottom-right of card
+                      Consumer<FavoritesProvider>(
+                        builder: (context, provider, _) {
+                          final isFav = provider.isFavorite(place.id);
+                          return Container(
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: isFav ? Colors.redAccent : Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.08),
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
                                 ),
-                                child: IconButton(
-                                  padding: EdgeInsets.zero,
-                                  constraints: const BoxConstraints(),
-                                  onPressed: () =>
-                                      provider.toggleFavorite(place.id),
-                                  icon: Icon(
-                                    Icons.favorite,
-                                    color: isFav
-                                        ? Colors.white
-                                        : Colors.redAccent,
-                                    size: 18,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
+                              ],
+                            ),
+                            child: IconButton(
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(),
+                              onPressed: () =>
+                                  provider.toggleFavorite(place.id),
+                              icon: Icon(
+                                Icons.favorite,
+                                color: isFav ? Colors.white : Colors.redAccent,
+                                size: 17,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
